@@ -13,7 +13,7 @@ export default class Dex extends Component {
     displayedPokemon: [],
     searchValue: "",
     offset: 0,
-    loading: false
+    loading: true
   };
 
   componentDidMount() {
