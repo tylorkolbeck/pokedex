@@ -1,6 +1,7 @@
 .pokeItem-wrapper {
   position: relative;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .pokeItem-content {
@@ -17,7 +18,7 @@
 }
 
 .pokeItem-img {
-  height: 50px;
+  height: 80px;
   width: 100px;
   background-position: center;
   background-repeat: no-repeat;

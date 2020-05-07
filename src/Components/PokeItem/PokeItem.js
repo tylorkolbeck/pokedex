@@ -1,19 +1,21 @@
 import React from "react";
 import "./PokeItem.scss";
 
-export default function PokeItem() {
+export default function PokeItem({ name, img, id, type }) {
   return (
     <div className="pokeItem-wrapper">
       <div className="pokeItem-content">
         <div
           className="pokeItem-img"
           style={{
-            background: `url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png)`,
+            background: `url(${img})`,
             backgroundPosition: "center"
           }}
         ></div>
-        <div className="pokeItem">001 Bulbasaur</div>
-        <span className="pokeItem-type">Grass</span>
+        <div className="pokeItem">
+          {id} {name}
+        </div>
+        <span className="pokeItem-type">{type}</span>
       </div>
     </div>
   );
