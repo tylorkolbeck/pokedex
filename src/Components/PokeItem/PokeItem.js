@@ -1,6 +1,6 @@
 import React from "react";
 import "./PokeItem.scss";
-import { titleCase } from "../helpers/formatter";
+import { titleCase, appendZeros } from "../helpers/formatter";
 import TypeBadge from "../TypeBadge/TypeBadge";
 
 export default function PokeItem({ name, img, id, type }) {
@@ -15,7 +15,7 @@ export default function PokeItem({ name, img, id, type }) {
           }}
         ></div>
         <div className="pokeItem">
-          {id} {titleCase(name)}
+          {appendZeros(id, 3)} {titleCase(name)}
         </div>
         <TypeBadge type={type} />
       </div>
