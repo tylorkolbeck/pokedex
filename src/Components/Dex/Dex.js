@@ -3,6 +3,7 @@ import "./Dex.scss";
 import PokeItem from "../PokeItem/PokeItem";
 import dexHeader from "../../assets/images/dexHeader.png";
 import getPokemon, { getPokemonDetails } from "../API/api";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default class Dex extends Component {
   state = {
@@ -57,6 +58,7 @@ export default class Dex extends Component {
               />
             );
           })}
+          {this.state.loading && <LoadingSpinner />}
         </div>
         <button onClick={this.loadMoreClickedHandler}>Load More</button>
       </div>
