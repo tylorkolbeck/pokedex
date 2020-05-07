@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import "./Dex.scss";
 import PokeItem from "../PokeItem/PokeItem";
 import dexHeader from "../../assets/images/dexHeader.png";
-import getPokemon, { getPokemonDetails } from "../API/api";
+import getPokemon from "../API/api";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import Button from "../UI/Button/Button";
 
 export default class Dex extends Component {
   state = {
     pokemon: [],
+    displayedPokemon: [],
+    searchValue: "",
     offset: 0,
     loading: false
   };
@@ -15,6 +18,18 @@ export default class Dex extends Component {
   componentDidMount() {
     this.getPokemon();
   }
+
+  inputChangedHandler = (event) => {
+    let input = event.target.value;
+    this.setState({
+      searchValue: input,
+      displayedPokemon: input
+        ? this.state.pokemon.filter(
+            (poke) => poke.name.toLowerCase() === input.toLowerCase()
+          )
+        : this.state.pokemon
+    });
+  };
 
   loadMoreClickedHandler = () => {
     if (!this.state.loading) {
@@ -29,6 +44,7 @@ export default class Dex extends Component {
       this.setState(
         {
           pokemon: [...this.state.pokemon, ...data],
+          displayedPokemon: [...this.state.pokemon, ...data],
           offset: this.state.offset + data.length
         },
         () => this.setState({ loading: false })
@@ -44,10 +60,15 @@ export default class Dex extends Component {
         <div className="dex-content">
           <div className="search-wrapper">
             <div>
-              <input type="text" placeholder="Search..." />
+              <input
+                value={this.state.searchValue}
+                type="text"
+                placeholder="Search..."
+                onChange={this.inputChangedHandler}
+              />
             </div>
           </div>
-          {this.state.pokemon.map((poke) => {
+          {this.state.displayedPokemon.map((poke) => {
             return (
               <PokeItem
                 key={poke.id}
@@ -59,8 +80,12 @@ export default class Dex extends Component {
             );
           })}
           {this.state.loading && <LoadingSpinner />}
+          <Button className="u-m-a" onClick={this.loadMoreClickedHandler}>
+            Load More
+          </Button>
         </div>
-        <button onClick={this.loadMoreClickedHandler}>Load More</button>
+
+        {/* <button onClick={this.loadMoreClickedHandler}>Load More</button> */}
       </div>
     );
   }

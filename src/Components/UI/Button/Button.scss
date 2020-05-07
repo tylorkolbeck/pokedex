@@ -1,0 +1,12 @@
+.btn {
+  // display: flex;
+  padding: 12px 18px;
+  background: rgb(101, 255, 101);
+  margin: 0 auto;
+  outline: none;
+
+  &:active {
+    outline: none;
+    border: none;
+  }
+}

@@ -5,6 +5,7 @@ import Dex from "./Components/Dex/Dex";
 function App() {
   return (
     <div className="App">
+      <h1>PokeDex</h1>
       <Dex />
     </div>
   );

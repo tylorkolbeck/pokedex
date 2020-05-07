@@ -1,5 +1,3 @@
-import { pokemon } from "./testData";
-
 export default function getPokemon(offset) {
   return fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
     .then((result) => result.json())
@@ -15,8 +13,8 @@ export function getPokemonDetails(pokemon) {
           name: data.name,
           type: data.types[0].type.name,
           img: data.sprites.front_default,
-          id: data.id,
-          data: data
+          id: data.id
+          // data: data
         };
       });
   });
