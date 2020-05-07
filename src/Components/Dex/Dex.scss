@@ -1,10 +1,15 @@
 .dex-wrapper {
-  background: #db3235;
+  // background: #db3235;
   min-height: 500px;
   border-radius: 10px;
   max-width: 1200px;
   margin: 0 auto;
+  background: #db3235;
+  border-radius: 30px;
+
   & .dex-content {
+    background: #db3235;
+
     padding: 20px;
   }
 
