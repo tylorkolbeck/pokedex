@@ -1,7 +1,7 @@
 import { pokemon } from "./testData";
 
-export default function getPokemon() {
-  return fetch("https://pokeapi.co/api/v2/pokemon/")
+export default function getPokemon(offset) {
+  return fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
     .then((result) => result.json())
     .then(({ results }) => getPokemonDetails(results));
 }

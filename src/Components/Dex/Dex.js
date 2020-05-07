@@ -6,12 +6,34 @@ import getPokemon, { getPokemonDetails } from "../API/api";
 
 export default class Dex extends Component {
   state = {
-    pokemon: []
+    pokemon: [],
+    offset: 0,
+    loading: false
   };
 
   componentDidMount() {
-    getPokemon().then((data) => this.setState({ pokemon: data }));
+    this.getPokemon();
   }
+
+  loadMoreClickedHandler = () => {
+    if (!this.state.loading) {
+      this.setState({ loading: true }, () => {
+        this.getPokemon();
+      });
+    }
+  };
+
+  getPokemon = () => {
+    getPokemon(this.state.offset).then((data) =>
+      this.setState(
+        {
+          pokemon: [...this.state.pokemon, ...data],
+          offset: this.state.offset + data.length
+        },
+        () => this.setState({ loading: false })
+      )
+    );
+  };
   render() {
     return (
       <div className="dex-wrapper">
@@ -36,6 +58,7 @@ export default class Dex extends Component {
             );
           })}
         </div>
+        <button onClick={this.loadMoreClickedHandler}>Load More</button>
       </div>
     );
   }
