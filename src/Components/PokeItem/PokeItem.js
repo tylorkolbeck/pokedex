@@ -1,7 +1,7 @@
 import React from "react";
 import "./PokeItem.scss";
 import { titleCase } from "../helpers/formatter";
-import TypeBadge from "../TypeBadge/TypeBade";
+import TypeBadge from "../TypeBadge/TypeBadge";
 
 export default function PokeItem({ name, img, id, type }) {
   return (

@@ -5,6 +5,7 @@ import dexHeader from "../../assets/images/dexHeader.png";
 import getPokemon from "../API/api";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Button from "../UI/Button/Button";
+import TypeBadge from "../TypeBadge/TypeBadge";
 
 export default class Dex extends Component {
   state = {
@@ -31,6 +32,15 @@ export default class Dex extends Component {
     });
   };
 
+  filterByType = (type) => {
+    this.setState({
+      displayedPokemon:
+        type === "reset"
+          ? this.state.pokemon
+          : this.state.pokemon.filter((poke) => poke.type === type)
+    });
+  };
+
   loadMoreClickedHandler = () => {
     if (!this.state.loading) {
       this.setState({ loading: true }, () => {
@@ -51,6 +61,8 @@ export default class Dex extends Component {
       )
     );
   };
+
+  determineTypeFilters = () => {};
   render() {
     return (
       <div className="dex-wrapper">
@@ -68,6 +80,10 @@ export default class Dex extends Component {
               />
             </div>
           </div>
+          <div className="typeBadges-wrapper">
+            <TypeBadge showAll={true} onClick={this.filterByType} />
+          </div>
+
           {this.state.displayedPokemon.map((poke) => {
             return (
               <PokeItem
@@ -84,8 +100,6 @@ export default class Dex extends Component {
             Load More
           </Button>
         </div>
-
-        {/* <button onClick={this.loadMoreClickedHandler}>Load More</button> */}
       </div>
     );
   }
