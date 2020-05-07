@@ -25,7 +25,9 @@ export default class Dex extends Component {
     this.setState({
       searchValue: input,
       displayedPokemon: input
-        ? this.state.pokemon.filter((poke) => poke.name.match(input, "gi"))
+        ? this.state.pokemon.filter((poke) =>
+            poke.name.match(input.toLowerCase(), "gi")
+          )
         : this.state.pokemon
     });
   };
@@ -60,7 +62,6 @@ export default class Dex extends Component {
     );
   };
 
-  determineTypeFilters = () => {};
   render() {
     return (
       <div className="dex-wrapper">
