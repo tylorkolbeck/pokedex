@@ -25,10 +25,7 @@ export default class Dex extends Component {
     this.setState({
       searchValue: input,
       displayedPokemon: input
-        ? this.state.pokemon.filter(
-            (poke) => poke.name.match(input, "gi")
-            // (poke) => poke.name.toLowerCase() === input.toLowerCase()
-          )
+        ? this.state.pokemon.filter((poke) => poke.name.match(input, "gi"))
         : this.state.pokemon
     });
   };
