@@ -6,10 +6,12 @@ import getPokemon from "../API/api";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Button from "../UI/Button/Button";
 import TypeBadge from "../TypeBadge/TypeBadge";
+import FilterButton from "../FilterButton/FilterButton";
 
 export default class Dex extends Component {
   state = {
     pokemon: [],
+    sorted: false,
     displayedPokemon: [],
     searchValue: "",
     offset: 0,
@@ -62,6 +64,21 @@ export default class Dex extends Component {
     );
   };
 
+  sortAZHandler = () => {
+    let pokemonClone = [...this.state.displayedPokemon];
+
+    if (this.state.sorted === false) {
+      pokemonClone.sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+      pokemonClone.sort((a, b) => a.id - b.id);
+    }
+
+    this.setState({
+      sorted: !this.state.sorted,
+      displayedPokemon: [...pokemonClone]
+    });
+  };
+
   render() {
     return (
       <div className="dex-wrapper">
@@ -81,8 +98,11 @@ export default class Dex extends Component {
           </div>
           <div className="typeBadges-wrapper">
             <TypeBadge showAll={true} onClick={this.filterByType} />
+            <FilterButton
+              onClick={this.sortAZHandler}
+              filtered={this.state.sorted}
+            />
           </div>
-
           {this.state.displayedPokemon.map((poke) => {
             return (
               <PokeItem
