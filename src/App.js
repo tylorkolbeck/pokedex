@@ -4,7 +4,7 @@ import Dex from "./Components/Dex/Dex";
 
 function App() {
   useEffect(() => {
-    fetch("http://acnhapi.com/fish/{fishID}").then((res) => console.log(res));
+    fetch("http://acnhapi.com/villagers").then((res) => console.log(res));
   }, []);
 
   return (
